@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% block title %}<title>Ernesto</title>{% endblock %}
+<h1>Inicio Pagina de Pronostico</h1>
+
+ <p>Bienvenido a <em>Reportes de Pronostico</em>, esta página es un modelo de pruebas.</p>
+
+<h2>Contenido Dinamico</h2>
+
+ <p>La pagina tiene esta cantidad de registros:</p>
+ <ul>
+     <li><strong>Reportes: </strong> {{ num_reports }} </li>
+     <li><strong>Cuentas: </strong> {{ num_cuentas }} </li>
+     <li><strong>Subareas: </strong> {{ num_subarea }} </li>
+     <li><strong>Servicios: </strong> {{ num_servicio }} </li>
+     <li><strong>Cuentas Activas</strong> {{ num_activos }} </li>
+ </ul>
+
+{% endblock %}

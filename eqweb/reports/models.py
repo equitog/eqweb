@@ -36,20 +36,19 @@ class Subarea(models.Model):
     )
 
     deactivate_subarea = models.BooleanField(choices=LOAN_STATUS, blank=True, default=1, help_text="Estado de la subarea")
-    id_servicio = models.ForeignKey('Servicio', on_delete=models.SET_NULL, null=True,help_text="Ingrese servicio para la subarea")
 
     def __str__(self):
         """
         Cadena que representa a la instancia particular del modelo (p. ej. en el sitio de Administracion)
         """
-        return "{0} - {1}".format(self.name_subarea, self.id_servicio.name_servicio)
+        return self.name_subarea
 
 class Cuenta(models.Model):
 
     id_cuenta = models.AutoField(primary_key=True)
     name_cuenta = models.CharField(max_length=100, null=False, blank=False, help_text="Ingrese nombre de la cuenta")
     date_since = models.DateField(null=False, blank=False)
-    data_until = models.DateField(null=True, blank=True)
+    date_until = models.DateField(null=True, blank=True)
 
     LOAN_STATUS = (
         (0, 'Inactivo'),
@@ -57,15 +56,40 @@ class Cuenta(models.Model):
     )
 
     deactivate_cuenta = models.BooleanField(default=1, choices=LOAN_STATUS, blank=True, help_text="Estado de la cuenta")
-    id_subarea = models.ForeignKey('Subarea', on_delete=models.SET_NULL, null=True,help_text="Ingrese la subarea para la cuenta")
 
     def __str__(self):
         """
         String que representa al objeto cuenta.
         """
         return '{cuenta}'.format(cuenta=self.name_cuenta)
+
+class Reporte(models.Model):
+
+    id_report = models.AutoField(primary_key=True)
+    name_report = models.CharField(max_length=100, null=False, blank=False, help_text="Ingrese nombre del reporte.")
+    date_since = models.DateField(null=False, blank=False, help_text="Ingrese fecha de inicio de actividad")
+    date_until = models.DateField(null=True, blank=True, help_text="Ingrese fecha de fin de actividad")
+    LOAN_STATUS = (
+        (0, 'Inactivo'),
+        (1, 'Activo'),
+    )
+    status_report = models.BooleanField(null=False, blank=False, choices=LOAN_STATUS)
+    id_cuenta = models.ForeignKey(Cuenta, on_delete=models.SET_NULL, null=True, blank=True, help_text="Ingrese nombre de la cuenta.")
+    id_subarea = models.ForeignKey(Subarea, on_delete=models.SET_NULL, null=True, blank=True,help_text="Ingrese nombre de la sub-area")
+    id_servicio = models.ForeignKey(Servicio, on_delete=models.SET_NULL, null=True, blank=True,help_text="Ingrese Nombre del servicio")
+
+    def __str__(self):
+        return '{reports}'.format(reports=self.name_report)
+
     def get_absolute_url(self):
         """
         Devuelve el URL a una instancia particular
         """
-        return reverse('cuenta-detail', args=[str(self.id_cuenta)])
+        return reverse('reporte-detail', args=[str(self.id_report)])
+
+    # def display_subarea(self):
+    #    """
+    #   Crea una cadena para la subarea. Este es requerido para mostrar subarea en el Admin
+    #    """
+    #    return ', '.join([ id_subarea.name_subarea for id_subarea in self.id_subarea.all()[:3] ])
+    # display_subarea.short_description = 'Subarea'
