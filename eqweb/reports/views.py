@@ -23,3 +23,11 @@ def index(request):
                  'num_servicio': num_servicio,
                  'num_activos': num_activos},
     )
+
+from django.views import generic
+
+class ReportListView(generic.ListView):
+    model = Reporte
+
+class ReportDetailView(generic.DetailView):
+    model = Reporte

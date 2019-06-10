@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="OVH" uuid="0a687a88-cd69-488a-8ded-424f3915555f">
+    <data-source source="LOCAL" name="eqweb@144.217.87.110" uuid="43c3162c-876f-4f96-b44e-2375eb063703">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

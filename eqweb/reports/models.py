@@ -87,6 +87,9 @@ class Reporte(models.Model):
         """
         return reverse('reporte-detail', args=[str(self.id_report)])
 
+    class Meta:
+        ordering = ['id_report']
+
     # def display_subarea(self):
     #    """
     #   Crea una cadena para la subarea. Este es requerido para mostrar subarea en el Admin

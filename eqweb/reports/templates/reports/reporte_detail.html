@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% block title %} <title>Detalle de reportes</title> {% endblock title %}
+<h1>Reporte: {{ reporte.name_report }}</h1>
+
+<p><strong>Reporte:</strong> <a href=""></a>{{ reporte.name_report }}</p>
+<p><strong>Fecha Inicio:</strong> {{ reporte.date_since }}</p>
+<p><strong>Fecha Fin:</strong> {{ reporte.date_until }}</p>
+<p><strong>Activo:</strong> {{ reporte.status_report }}</p>
+<p><strong>Cuenta:</strong> <a href="">{{ reporte.id_cuenta }}</a></p>
+
+{% endblock%}
